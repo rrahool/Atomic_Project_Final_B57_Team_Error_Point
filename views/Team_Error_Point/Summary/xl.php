@@ -1,7 +1,7 @@
 <?php
 include_once ('../../../vendor/autoload.php');
-use App\Birthday\Birthday;
-$obj= new Birthday();
+use App\Summary\Summary;
+$obj= new Summary();
 $allData=$obj->index();
 
 /** Error reporting */
@@ -37,7 +37,8 @@ $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('A1', 'SL')
     ->setCellValue('B1', 'ID')
     ->setCellValue('C1', 'Name')
-    ->setCellValue('D1', 'Birthday');
+    ->setCellValue('D1', 'Organization')
+    ->setCellValue('E1', 'Summary');
 
 $sl=0;
 $counter=1;
@@ -49,10 +50,11 @@ foreach($allData as $row) {
         ->setCellValue('A' . $counter, $sl)
         ->setCellValue('B' . $counter, $row->id)
         ->setCellValue('C' . $counter, $row->name)
-        ->setCellValue('D' . $counter, $row->dob);
+        ->setCellValue('D' . $counter, $row->organization)
+        ->setCellValue('E' . $counter, $row->summary);
 
 // Rename worksheet
-    $objPHPExcel->getActiveSheet()->setTitle('Birthday');
+    $objPHPExcel->getActiveSheet()->setTitle('Summary');
 
 }
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
@@ -61,7 +63,7 @@ $objPHPExcel->setActiveSheetIndex(0);
 
 // Redirect output to a client’s web browser (Excel2007)
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="Birthday.xlsx"');
+header('Content-Disposition: attachment;filename="Summary.xlsx"');
 header('Cache-Control: max-age=0');
 // If you're serving to IE 9, then the following may be needed
 header('Cache-Control: max-age=1');

@@ -119,7 +119,7 @@ if($list){
         $profile_picture = $row->profile_picture;
 
         $sl++;
-        printf("<tr><td width='50'>%d</td><td width='50'>%d</td><td width='450'>%s</td><td width='550'>%s</td></tr>",$sl,$id,$name,$profile_picture);
+        printf("<tr><td width='50'>%d</td><td width='50'>%d</td><td width='450'>%s</td><td width='550'><img src='Images/%s' height='50px;' width='50px;'></td></tr>",$sl,$id,$name,$profile_picture);
 
 
     }
@@ -128,7 +128,7 @@ if($list){
 }
 else
 {
-    printf("I'm recommending You: [<strong>ProfilePicture ID: </strong>%s, <strong>Name: </strong>%s, <strong>ProfilePicture: </strong>%s]",$singleItem->id,$singleItem->name,$singleItem->profile_picture);
+    printf("I'm recommending You: [<strong>ProfilePicture ID: </strong>%s, <strong>Name: </strong>%s, <strong>ProfilePicture: </strong><img src='Images/%s' height='50px;'  width='50px;'>]",$singleItem->id,$singleItem->name,$singleItem->profile_picture);
 
 }
 ?>

@@ -11,10 +11,10 @@ session_start();
 include_once('../../../vendor/autoload.php');
 require '../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 
-use App\Birthday\Birthday;
+use App\Summary\Summary;
 use App\Message\Message;
 
-$name = new Birthday();
+$name = new Summary();
 
 if(isset($_REQUEST['list'])) {
     $list = 1;
@@ -69,8 +69,8 @@ else {
             <div class="col-md-5"></div>
             <div class="col-md-7">
                 <div class="w3-bar w3-border w3-light-grey">
-                    <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Add Birthday</a>
-                    <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none">Birthday List</a>
+                    <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Add Summary</a>
+                    <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none">Summary List</a>
                     <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none">Trash List</a>
                     <div class="w3-dropdown-hover">
                         <button class="w3-button">More <i class="fa fa-caret-down"></i></button>
@@ -101,7 +101,7 @@ else {
                 <input type="text"  name="email"  class="form-control" id="email" placeholder="Enter recipient email address here...">
 
                 <label for="Subject">Subject:</label>
-                <input type="text"  name="subject"  class="form-control" id="subject" value="<?php if($list){echo "List of birth dates recommendation";} else {echo "A single birth date recommendation";} ?>">
+                <input type="text"  name="subject"  class="form-control" id="subject" value="<?php if($list){echo "List of organization's summary recommendation";} else {echo "A single organization's summary recommendation";} ?>">
                 <label for="body">Body:</label>
             <textarea   rows="8" cols="160"  name="body" >
 <?php
@@ -110,16 +110,17 @@ if($list){
     $trs="";
     $sl=0;
 
-    printf("<table><tr> <td width='50'><strong>Serial</strong></td><td width='50'><strong>ID</strong></td><td width='250'><strong>Name</strong></td><td width='250'><strong>Birthday</strong></td></tr>");
+    printf("<table><tr> <td width='50'><strong>Serial</strong></td><td width='50'><strong>ID</strong></td><td width='250'><strong>Name</strong></td><td width='200'><strong>Organization</strong></td><td width='300'><strong>Summary</strong></td></tr>");
 
     foreach($recordSet as $row) {
 
         $id = $row->id;
         $name = $row->name;
-        $dob = $row->dob;
+        $organization = $row->organization;
+        $summary = $row->summary;
 
         $sl++;
-        printf("<tr><td width='50'>%d</td><td width='50'>%d</td><td width='450'>%s</td><td width='550'>%s</td></tr>",$sl,$id,$name,$dob);
+        printf("<tr><td width='50'>%d</td><td width='50'>%d</td><td width='450'>%s</td><td width='550'>%s</td><td width='550'>%s</td></tr>",$sl,$id,$name,$organization,$summary);
 
 
     }
@@ -128,7 +129,7 @@ if($list){
 }
 else
 {
-    printf("I'm recommending You: [<strong>Birthday ID: </strong>%s, <strong>Name: </strong>%s, <strong>Birthday: </strong>%s]",$singleItem->id,$singleItem->name,$singleItem->dob);
+    printf("I'm recommending You: [<strong>Summary ID: </strong>%s, <strong>Name: </strong>%s, <strong>Organiztion: </strong>%s, <strong>Summary: </strong>%s]",$singleItem->id,$singleItem->name,$singleItem->organization, $singleItem->summary);
 
 }
 ?>

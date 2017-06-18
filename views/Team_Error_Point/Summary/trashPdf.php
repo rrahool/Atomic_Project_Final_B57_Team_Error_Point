@@ -1,8 +1,8 @@
 <?php
 include_once ('../../../vendor/autoload.php');
-use App\Birthday\Birthday;
+use App\Summary\Summary;
 
-$obj= new Birthday();
+$obj= new Summary();
 $allData=$obj->trashList();
 //var_dump($allData);
 $trs="";
@@ -11,13 +11,15 @@ $sl=0;
 foreach($allData as $row) {
     $id =  $row->id;
     $name = $row->name;
-    $dob =$row->dob;
+    $organization = $row->organization;
+    $summary =$row->summary;
     $sl++;
     $trs .= "<tr>";
     $trs .= "<td width='50'> $sl</td>";
     $trs .= "<td width='50'> $id </td>";
     $trs .= "<td width='250'> $name </td>";
-    $trs .= "<td width='250'> $dob </td>";
+    $trs .= "<td width='250'> $organization </td>";
+    $trs .= "<td width='250'> $summary </td>";
 
     $trs .= "</tr>";
 }
@@ -30,7 +32,8 @@ $html= <<<BITM
                     <th align='left'>Serial</th>
                     <th align='left' >ID</th>
                     <th align='left' >Name</th>
-                    <th align='left' >Birthday</th>
+                    <th align='left' >Organization</th>
+                    <th align='left' >Summary</th>
 
               </tr>
                 </thead>
@@ -57,4 +60,4 @@ $mpdf = new mPDF();
 $mpdf->WriteHTML($html);
 
 // Output a PDF file directly to the browser
-$mpdf->Output('Birthday - TrashList.pdf', 'D');
+$mpdf->Output('Summary - TrashList.pdf', 'D');
