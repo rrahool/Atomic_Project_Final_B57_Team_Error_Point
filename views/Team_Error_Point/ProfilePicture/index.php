@@ -209,7 +209,7 @@
                                                 <td>$serial</td>
                                                 <td>$row->id</td>
                                                 <td>$row->name</td>
-                                                <td><img src='Images/$row->profile_picture' height='50px;' width='50px;'> </td>
+                                                <td><img src='Images/$row->profile_picture' height='50px;' width='50px;'></td>
                                                 <td>
                                                     <a href='view.php?id=$row->id' title='View'>
                                                         <button type='button' class='w3-btn w3-blue w3-hover-blue' style='font-size: 20px;'>

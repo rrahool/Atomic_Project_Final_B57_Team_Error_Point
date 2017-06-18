@@ -140,7 +140,7 @@
                     <div class="col-sm-1"></div>
 
                     <!-- required for search, block 4 of 5 start -->
-
+                    <br><br>
                     <div class="col-sm-5">
                         <div class="w3-panel">
                             <form id="searchForm" action="index.php"  method="get">

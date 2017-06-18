@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-
+            <br><br>
             <form id="selectionForm" action="recover_multiple.php" method="post">
 
                 <div class="row">

@@ -11,20 +11,20 @@ session_start();
 include_once('../../../vendor/autoload.php');
 require '../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 
-use App\BookTitle\BookTitle;
+use App\Gender\Gender;
 use App\Message\Message;
 
-$bookTitle = new BookTitle();
+$name = new Gender();
 
 if(isset($_REQUEST['list'])) {
     $list = 1;
-    $recordSet = $bookTitle->trashList();
+    $recordSet = $name->index();
 
 }
 else {
     $list= 0;
-    $bookTitle->setData($_REQUEST);
-    $singleItem = $bookTitle->view();
+    $name->setData($_REQUEST);
+    $singleItem = $name->view();
 }
 
 ?>
@@ -69,8 +69,8 @@ else {
             <div class="col-md-5"></div>
             <div class="col-md-7">
                 <div class="w3-bar w3-border w3-light-grey">
-                    <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Add Book</a>
-                    <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none">Book List</a>
+                    <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Add Gender</a>
+                    <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none">Gender List</a>
                     <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none">Trash List</a>
                     <div class="w3-dropdown-hover">
                         <button class="w3-button">More <i class="fa fa-caret-down"></i></button>
@@ -93,7 +93,7 @@ else {
         <div class="col-md-1"></div>
     <div class="col-md-10">
         <h2>Email This To A Friend</h2>
-        <form  role="form" method="post" action="trashMail.php<?php if(isset($_REQUEST['id'])) echo "?id=".$_REQUEST['id']; else echo "?list=1";?>">
+        <form  role="form" method="post" action="email.php<?php if(isset($_REQUEST['id'])) echo "?id=".$_REQUEST['id']; else echo "?list=1";?>">
             <div class="form-group">
                 <label for="Name">Name:</label>
                 <input type="text"  name="name"  class="form-control" id="name" placeholder="Enter name of the recipient ">
@@ -101,7 +101,7 @@ else {
                 <input type="text"  name="email"  class="form-control" id="email" placeholder="Enter recipient email address here...">
 
                 <label for="Subject">Subject:</label>
-                <input type="text"  name="subject"  class="form-control" id="subject" value="<?php if($list){echo "List of books recommendation";} else {echo "A single book recommendation";} ?>">
+                <input type="text"  name="subject"  class="form-control" id="subject" value="<?php if($list){echo "List of gender recommendation";} else {echo "A single gender recommendation";} ?>">
                 <label for="body">Body:</label>
             <textarea   rows="8" cols="160"  name="body" >
 <?php
@@ -110,17 +110,16 @@ if($list){
     $trs="";
     $sl=0;
 
-    printf("<h3>Trashed Items</h3>");
-    printf("<table><tr> <td width='50'><strong>Serial</strong></td><td width='50'><strong>ID</strong></td><td width='250'><strong>Book Title</strong></td><td width='250'><strong>Author Name</strong></td></tr>");
+    printf("<table><tr> <td width='50'><strong>Serial</strong></td><td width='50'><strong>ID</strong></td><td width='250'><strong>Name</strong></td><td width='250'><strong>Gender</strong></td></tr>");
 
     foreach($recordSet as $row) {
 
         $id = $row->id;
-        $bookName = $row->book_title;
-        $authorName = $row->author_name;
+        $name = $row->name;
+        $gender = $row->gender;
 
         $sl++;
-        printf("<tr><td width='50'>%d</td><td width='50'>%d</td><td width='450'>%s</td><td width='550'>%s</td></tr>",$sl,$id,$bookName,$authorName);
+        printf("<tr><td width='50'>%d</td><td width='50'>%d</td><td width='450'>%s</td><td width='550'>%s</td></tr>",$sl,$id,$name,$gender);
 
 
     }
@@ -129,7 +128,7 @@ if($list){
 }
 else
 {
-    printf("Trashed Item: [<strong>Book ID: </strong>%s, <strong>Book Name: </strong>%s, <strong>Author Name: </strong>%s]",$singleItem->id,$singleItem->book_title,$singleItem->author_name);
+    printf("I'm recommending You: [<strong>Gender ID: </strong>%s, <strong>Name: </strong>%s, <strong>Gender: </strong>%s]",$singleItem->id,$singleItem->name,$singleItem->gender);
 
 }
 ?>
@@ -208,7 +207,7 @@ else
 
                 ?>
                 <script type="text/javascript">
-                    window.location.href = 'trashed.php';
+                    window.location.href = 'index.php';
                 </script>
                 <?php
 

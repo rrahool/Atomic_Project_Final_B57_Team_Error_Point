@@ -1,8 +1,8 @@
 <?php
 include_once ('../../../vendor/autoload.php');
-use App\BookTitle\BookTitle;
-$obj= new BookTitle();
-$allData=$obj->trashList();
+use App\ProfilePicture\ProfilePicture;
+$obj= new ProfilePicture();
+$allData=$obj->index();
 
 /** Error reporting */
 error_reporting(E_ALL);
@@ -36,8 +36,8 @@ $objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
 $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('A1', 'SL')
     ->setCellValue('B1', 'ID')
-    ->setCellValue('C1', 'Book Name')
-    ->setCellValue('D1', 'Author Name');
+    ->setCellValue('C1', 'Name')
+    ->setCellValue('D1', 'ProfilePicture');
 
 $sl=0;
 $counter=1;
@@ -48,11 +48,11 @@ foreach($allData as $row) {
     $objPHPExcel->setActiveSheetIndex(0)
         ->setCellValue('A' . $counter, $sl)
         ->setCellValue('B' . $counter, $row->id)
-        ->setCellValue('C' . $counter, $row->book_title)
-        ->setCellValue('D' . $counter, $row->author_name);
+        ->setCellValue('C' . $counter, $row->name)
+        ->setCellValue('D' . $counter, "<img src='$row->profile_picture'>");
 
 // Rename worksheet
-    $objPHPExcel->getActiveSheet()->setTitle('Book Title');
+    $objPHPExcel->getActiveSheet()->setTitle('ProfilePicture');
 
 }
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
@@ -61,7 +61,7 @@ $objPHPExcel->setActiveSheetIndex(0);
 
 // Redirect output to a client’s web browser (Excel2007)
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="Book Title - TrashList.xlsx"');
+header('Content-Disposition: attachment;filename="ProfilePicture.xlsx"');
 header('Cache-Control: max-age=0');
 // If you're serving to IE 9, then the following may be needed
 header('Cache-Control: max-age=1');
