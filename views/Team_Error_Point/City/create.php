@@ -15,7 +15,7 @@
 
 
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html dir="ltr" lang="en-US" style="height: 100%;">
 
 <head>
 
@@ -31,6 +31,10 @@
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
     <script src="../../../resources/bootstrap/js/jquery.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../../../resources/index_page/colors2e70.css?color=e7272d" type="text/css" />
     <!-- Document Title
     ============================================= -->
     <title>Add City</title>
@@ -38,7 +42,7 @@
 
 </head>
 
-<body class="stretched">
+<body class="stretched" style="height: 100%;">
 
 <!-- Document Wrapper
 ============================================= -->
@@ -56,8 +60,7 @@
 
                 <!-- Logo
                 ============================================= -->
-                <div id="logo">
-                    <br>
+                <div id="logo" style="padding: 10px;">
                     <h1>CITY</h1>
                 </div><!-- #logo end -->
 
@@ -81,7 +84,7 @@
 
     </header><!-- #header end -->
 
-    <section id="slider" style="background: url('../../../images/landing2.jpg') center; overflow: visible;" data-height-lg="500" data-height-md="500" data-height-sm="600" data-height-xs="600" data-height-xxs="600">
+    <section id="slider" style="background: url('../../../images/create_pages/city.jpg'); overflow: visible;  background-attachment: fixed;  background-position: center; background-repeat: no-repeat; background-size: cover;" >
         <div class="container clearfix">
 
             <form action="store.php" method="post" role="form" class="landing-wide-form landing-form-overlay dark nobottommargin clearfix" style="padding-bottom: 100px;">
@@ -114,34 +117,29 @@
             </form>
 
         </div>
-    </section>
 
-    <!-- Content
-    ============================================= -->
-    <section id="content" style="overflow: visible;">
-
-        <div class="content-wrap">
-
-            <div class="promo promo-dark promo-full landing-promo header-stick">
+        <section class="clearfix">
+            <div class="promo promo-dark promo-full landing-promo header-stick" style="background-color: transparent">
                 <div class="container clearfix">
-                    <h3>Team <span style="color: #DBAB83">Error Point</span> Creation <i class="icon-circle-arrow-right" style="position:relative;top:2px;"></i></h3>
+                    <h3>Team <span style="color: #DBAB83">Error Point</span> Creation <i class="fa fa-arrow-circle-right" style="position:relative;top:2px;"></i></h3>
                     <span>You'll love our beautiful &amp; interactive designs that makes your web surfing fun.</span>
                 </div>
             </div>
 
-        </div>
+        </section>
+    </section>
 
-    </section><!-- #content end -->
+    <!-- Content
+    ============================================= -->
+
 
 </div>
 
 
 
-
-
 <!-- Go To Top
 ============================================= -->
-<div id="gotoTop" class="icon-angle-up"></div>
+<div id="gotoTop" class="fa fa-chevron-up"></div>
 
 <!-- External JavaScripts
 ============================================= -->
